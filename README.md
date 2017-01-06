@@ -1,12 +1,10 @@
 <p style="text-align:center;">
 <img src="http://i.imgur.com/dPWDGGl.png"></p>
 
+#Features
 
----
 
-
-##Features
-Not much at the moment.
+Not all that much at the moment.
 
 
 
