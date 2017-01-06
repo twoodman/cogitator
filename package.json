@@ -1,0 +1,23 @@
+{
+  "name": "coginator",
+  "version": "1.0.0",
+  "description": "A Discord bot built with Discord.js",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+ssh://git@github.com/twoodman/cogitator.git"
+  },
+  "author": "Trevor Woodman",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/twoodman/cogitator/issues"
+  },
+  "homepage": "https://github.com/twoodman/cogitator#readme",
+  "dependencies": {
+    "discord.js": "^11.0.0",
+    "dotenv": "^2.0.0"
+  }
+}
