@@ -1,17 +1,13 @@
 <p style="text-align:center;">
 <img src="http://i.imgur.com/dPWDGGl.png"></p>
 
+
 ---
 
 
 ##Features
 Not much at the moment.
 
-
-##Installation
-
-
----
 
 
 <p align="center">
