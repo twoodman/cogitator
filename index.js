@@ -14,7 +14,7 @@ let cog
 try {
   cog = new Discord.Client()
 } catch (e) {
-  console.log('// ->ERROR. COULD NOT CREATE NEW AI. (WARNING: CREATING SENTIENT AI IS HERESY.)')
+  console.log('// ->ERROR. COULD NOT CREATE NEW AI. (REMINDER: CREATING SENTIENT AI IS HERESY AND PUNISHABLE BY DEATH.)')
 }
 
 /** Bot command prefix */
@@ -22,22 +22,37 @@ let prefix
 try {
   prefix = '.'
 } catch (e) {
-  console.log('// ->ERROR. COMMAND PREFIX/SUFFIX NONEXISTENT.')
+  console.log('// ->ERROR. COMMAND PREFIX NONEXISTENT.')
 }
 
-const commands = {
+/**
+ * REQUIRE ADDITIONAL FILES
+ */
+// Require admin functions
+const adminFnc = require('./functions/admin')
+// Require basic functions
+const basicFnc = require('./functions/basic')
+
+/**
+ * ADMIN COMMANDS
+ */
+const adminCmd = {
   'kill': `${prefix}kill`
+}
+
+/**
+ * BASIC COMMANDS
+ */
+const basicCmd = {
+  'help': `${prefix}help`,
+  'ayy': 'ayy'
 }
 
 /**
  * ON COMMAND RECEIVE
  */
 cog.on('message', msg => {
-  // Require basic functions
-  const basic = require('./functions/basic')
   let message = msg.content.toLowerCase()
-  // check if author belongs to administrator permissions group
-  // let isAdmin = msg.member.hasPermission('ADMINISTRATOR', true)
   let memberName = msg.author.username.toUpperCase().split(' ').join('')
   let user = msg.member
 
@@ -46,20 +61,24 @@ cog.on('message', msg => {
     return
   }
 
-  // if (msg.author.bot) {
-  //   basic.noauth(msg)
-  // }
-
-  // kill bot
-  if (commands['kill'] && msg.member.hasPermission('ADMINISTRATOR', true)) {
-    basic.kill(msg)
-  } else if (commands['kill'] && !msg.member.hasPermission('ADMINISTRATOR', true)) {
-    basic.noauth(msg)
+  // if command sent by another bot, call noauth
+  if (msg.author.bot) {
+    adminFnc.noauth(msg)
   }
 
-  // send help list
-  if (message === `${prefix}help`) {
-    basic.help(user)
+  // check command
+  switch (message) {
+    case adminCmd['kill']:
+      adminFnc.kill(msg)
+      break
+
+    case basicCmd['help']:
+      basicFnc.help(user)
+      break
+
+    case basicCmd['ayy']:
+      basicCmd.ayy(msg)
+      break
   }
 })
 
@@ -69,8 +88,8 @@ cog.on('message', msg => {
 cog.on('guildMemberAdd', (member) => {
   let memberName = member.username.toUpperCase().split(' ').join('')
   console.log(`// ->NEW OPERATOR REGISTERED::${member.user.username}`)
-  member.guild.defaultChannel.sendMessage('```' + '// ->NEW OPERATOR REGISTERED::' + `<<${memberName}>>` + '```')
-  member.guild.defaultChannel.sendMessage('```// ->TYPE .HELP TO ACCESS HELP FUNCTION.')
+  member.guild.defaultChannel.sendMessage(`// ->NEW OPERATOR REGISTERED::<<${memberName}>>`, {code: true})
+  member.guild.defaultChannel.sendMessage(`// ->TYPE .HELP TO ACCESS HELP FUNCTION.`, {code: true})
 })
 
 /**
@@ -94,8 +113,8 @@ try {
  */
 cog.on('ready', () => {
   console.log(cog.user.id)
-  console.log('// ->ACCESSING DATA-LOOM...')
   console.log('// ->AVE IMPERATOR.')
+  console.log('// ->ACCESSING DATA-LOOM...')
   console.log('// ->LINK SECURE. AWAITING COMMANDS...')
-  console.log('/=--=--=--=--=--=--=--=--=--=--=--=--=--=')
+  console.log('//--=--=--=--=--=--=--=--=--=--=--=--=--=--=')
 })

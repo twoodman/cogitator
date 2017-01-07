@@ -1,17 +1,9 @@
-const kill = (msg) => {
-  return msg.channel.sendMessage('```// KILLING PROCESS...```')
-}
-
+// help cmd
 const help = (user) => {
-  return user.sendMessage('TEST')
+  return user.sendMessage('TEST', {code: true})
 }
 
-const noauth = (msg) => {
-  return msg.reply('```' + '// <<' + msg.author.username.toUpperCase().split(' ').join('') + '>> ->UNAUTHORIZED QUERY. STAND DOWN, CITIZEN.```')
-}
-
+// export functions
 module.exports = {
-  kill: kill,
-  help: help,
-  noauth: noauth
+  help: help
 }
