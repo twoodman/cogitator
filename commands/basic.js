@@ -20,7 +20,7 @@ const roll = (msg, die, faces, op, add) => {
   if (op !== '-' || op !== '+' || op !== '*' || op !== '/') {
     return msg.channel.sendMessage(`// ->YOU ROLLED: ${(Math.floor((Math.random() * (die * faces)) + 0))}${op}${add}`, {code: true})
   } else {
-    return msh.channel.sendMessage(`// ->INVALID OPERATOR GIVEN. ${op}`, {code: true})
+    return msg.channel.sendMessage(`// ->INVALID OPERATOR GIVEN. ${op}`, {code: true})
   }
 }
 
