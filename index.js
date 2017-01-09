@@ -6,7 +6,7 @@ let Discord
 try {
   Discord = require('discord.js')
 } catch (e) {
-  console.log('// ->ERROR. COULD NOT ACQUIRE NECESSARY FILES.')
+  console.log('// ->ERROR. COULD NOT ACQUIRE NECESSARY FILES.\n')
 }
 
 /** Create new bot */
@@ -14,7 +14,7 @@ let cog
 try {
   cog = new Discord.Client()
 } catch (e) {
-  console.log('// ->ERROR. COULD NOT CREATE NEW AI. (REMINDER: CREATING SENTIENT AI IS HERESY AND PUNISHABLE BY DEATH.)')
+  console.log('// ->ERROR. COULD NOT CREATE NEW AI. (REMINDER: CREATING SENTIENT AI IS HERESY AND PUNISHABLE BY DEATH.)\n')
 }
 
 /** Bot command prefix */
@@ -22,39 +22,23 @@ let prefix
 try {
   prefix = '.'
 } catch (e) {
-  console.log('// ->ERROR. COMMAND PREFIX NONEXISTENT.')
+  console.log('// ->ERROR. COMMAND PREFIX NONEXISTENT.\n')
 }
 
 /**
  * REQUIRE ADDITIONAL FILES
  */
 // Require admin functions
-const adminFnc = require('./functions/admin')
+const admin = require('./functions/admin')
 // Require basic functions
-const basicFnc = require('./functions/basic')
-
-/**
- * ADMIN COMMANDS
- */
-const adminCmd = {
-  'kill': `${prefix}kill`
-}
-
-/**
- * BASIC COMMANDS
- */
-const basicCmd = {
-  'help': `${prefix}help`,
-  'ayy': 'ayy'
-}
+const basic = require('./functions/basic')
 
 /**
  * ON COMMAND RECEIVE
  */
-cog.on('message', msg => {
+cog.on('message', (msg) => {
   let message = msg.content.toLowerCase()
-  let memberName = msg.author.username.toUpperCase().split(' ').join('')
-  let user = msg.member
+  // let memberName = msg.author.username.toUpperCase().split(' ').join('')
 
   // check if cmd starts with prefix
   if (!msg.content.startsWith(prefix)) {
@@ -63,22 +47,30 @@ cog.on('message', msg => {
 
   // if command sent by another bot, call noauth
   if (msg.author.bot) {
-    adminFnc.noauth(msg)
+    admin.noauth(msg)
   }
 
-  // check command
-  switch (message) {
-    case adminCmd['kill']:
-      adminFnc.kill(msg)
-      break
+  // command checks
+  if (message.startsWith(`${prefix}kill`)) {
+    admin.kill(msg)
+  }
 
-    case basicCmd['help']:
-      basicFnc.help(user)
-      break
+  if (message.startsWith(`${prefix}kick`)) {
+    admin.kick(msg)
+  }
 
-    case basicCmd['ayy']:
-      basicCmd.ayy(msg)
-      break
+  if (message.startsWith(`${prefix}help`)) {
+    basic.help(msg)
+  }
+
+  if (message.startsWith(`${prefix}toroman`)) {
+    basic.toroman(msg)
+  }
+
+  if (message.startsWith(`${prefix}banhammer`)) {
+    // get num from 0-7. 0 = permaban, 1-7 = days
+    let num = msg.content.split(' ').slice(2)
+    admin.banhammer(msg, num)
   }
 })
 
@@ -86,10 +78,11 @@ cog.on('message', msg => {
  * WELCOME NEW MEMBERS
  */
 cog.on('guildMemberAdd', (member) => {
-  let memberName = member.username.toUpperCase().split(' ').join('')
-  console.log(`// ->NEW OPERATOR REGISTERED::${member.user.username}`)
-  member.guild.defaultChannel.sendMessage(`// ->NEW OPERATOR REGISTERED::<<${memberName}>>`, {code: true})
-  member.guild.defaultChannel.sendMessage(`// ->TYPE .HELP TO ACCESS HELP FUNCTION.`, {code: true})
+  let memberName = member.displayName.toUpperCase().split(' ').join('')
+  console.log(`// ->NEW USER REGISTERED::${memberName}\n`)
+  member.guild.defaultChannel.sendMessage(`// ->NEW USER REGISTERED::<<${memberName}>>`, {code: true})
+  member.sendMessage(`// ->TYPE .HELP TO ACCESS HELP FUNCTION.`, {code: true})
+  // member.guild.defaultChannel.sendMessage(`// ->TYPE .HELP TO ACCESS HELP FUNCTION.`, {code: true})
 })
 
 /**
@@ -105,16 +98,24 @@ cog.on('error', e => {
 try {
   cog.login(process.env.BOT_TOKEN)
 } catch (e) {
-  console.log('// ->ERROR. CONNECTION FAILED. CHECK TOKEN.')
+  console.log(`// ->ERROR. CONNECTION FAILED. CHECK TOKEN.\n------------\n${e.stack}\n`)
 }
+
+/**
+ * ON DISCONNECT, RECONNECT
+ */
+cog.on('disconnect', () => {
+  try {
+    cog.login(process.env.BOT_TOKEN)
+  } catch (e) {
+    console.log(`// ->ERROR. RECONNECT FAILED.\n------------\n${e.stack}\n`)
+  }
+})
 
 /**
  * SEND READY MESSAGE TO CONSOLE
  */
 cog.on('ready', () => {
-  console.log(cog.user.id)
-  console.log('// ->AVE IMPERATOR.')
-  console.log('// ->ACCESSING DATA-LOOM...')
-  console.log('// ->LINK SECURE. AWAITING COMMANDS...')
-  console.log('//--=--=--=--=--=--=--=--=--=--=--=--=--=--=')
+  console.log(`// ->COGITATOR # ${cog.user.id}\n`)
+  console.log('// ->AVE IMPERATOR.\n// ->ACCESSING DATA-LOOM...\n// ->LINK SECURE. AWAITING COMMANDS...\n//--=--=--=--=--=--=--=--=--=--=--=--=--=--=\n')
 })
