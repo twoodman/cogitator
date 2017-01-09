@@ -1,6 +1,3 @@
-// require basic cmd
-// const basic = require('./basic')
-
 // super kill, the actual kill function
 const superkill = () => {
   return process.exit(1) // exit with error

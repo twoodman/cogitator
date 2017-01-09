@@ -15,7 +15,6 @@ const help = (msg) => {
  * faces = how many faces said die has
  * op = operator. subtract, add, multiply, divide. - + * /
  * prof = proficiency. RP term meaning how much to take or subtract.
- * I added multiplication and division for fun
  */
 const roll = (msg, die, faces, op, add) => {
   if (op !== '-' || op !== '+' || op !== '*' || op !== '/') {
