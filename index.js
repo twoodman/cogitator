@@ -29,9 +29,9 @@ try {
  * REQUIRE ADDITIONAL FILES
  */
 // Require admin functions
-const admin = require('./functions/admin')
+const admin = require('./commands/admin')
 // Require basic functions
-const basic = require('./functions/basic')
+const basic = require('./commands/basic')
 
 /**
  * ON COMMAND RECEIVE
@@ -50,27 +50,83 @@ cog.on('message', (msg) => {
     admin.noauth(msg)
   }
 
-  // command checks
+/**
+ * COMMAND CHECKS
+ *-=-=-=-=-=-=-=-=-=
+ * ADMIN
+ */
+  // kill
   if (message.startsWith(`${prefix}kill`)) {
-    admin.kill(msg)
+    if (admin.permCheck(msg)) {
+      admin.kill(msg)
+    } else {
+      return
+    }
   }
 
+  // super kill
+  if (message.startsWith(`${prefix}superkill`)) {
+    if (admin.permCheck(msg)) {
+      admin.superkill(msg)
+    } else {
+      return
+    }
+  }
+
+  // kick
   if (message.startsWith(`${prefix}kick`)) {
-    admin.kick(msg)
+    if (admin.permCheck(msg)) {
+      admin.kick(msg)
+    } else {
+      return
+    }
   }
 
+  // BANHAMMA!!!
+  if (message.startsWith(`${prefix}banhamma`)) {
+    if (admin.permCheck(msg)) {
+      // get num from 0-7. 0 = permaban, 1-7 = days
+      let num = msg.content.split(' ').slice(2)
+      admin.banhamma(msg, num)
+    } else {
+      return
+    }
+  }
+
+  /**
+   * BASIC USER
+   */
+  // help
   if (message.startsWith(`${prefix}help`)) {
     basic.help(msg)
   }
 
+  // to roman numerals
   if (message.startsWith(`${prefix}toroman`)) {
     basic.toroman(msg)
   }
 
-  if (message.startsWith(`${prefix}banhammer`)) {
-    // get num from 0-7. 0 = permaban, 1-7 = days
-    let num = msg.content.split(' ').slice(2)
-    admin.banhammer(msg, num)
+  // from roman numerals
+  if (message.startsWith(`${prefix}fromroman`)) {
+    basic.fromroman(msg)
+  }
+
+  // roll XdY
+  if (message.startsWith(`${prefix}roll`)) {
+    // get x, y (how many die, faces)
+    let die = msg.content.split(' ').slice(1).join('').split('')[0]
+    let faces = msg.content.split(' ').slice(1).join('').split('')[2]
+    let add = msg.content.split(' ').slice(3)
+    let op = msg.content.split(' ').slice(2)
+    if (add && typeof parseInt(add) !== 'number') {
+      msg.channel.sendMessage('// ->GIVEN ARGUMENTS MUST BE OF TYPE <<NUMBER>>', {code: true})
+    } else {
+      if (typeof parseInt(die) !== 'number' || typeof parseInt(faces) !== 'number') {
+        msg.channel.sendMessage('// ->GIVEN ARGUMENTS MUST BE OF TYPE <<NUMBER>>', {code: true})
+      } else {
+        basic.roll(msg, die, faces, add)
+      }
+    }
   }
 })
 
@@ -82,7 +138,6 @@ cog.on('guildMemberAdd', (member) => {
   console.log(`// ->NEW USER REGISTERED::${memberName}\n`)
   member.guild.defaultChannel.sendMessage(`// ->NEW USER REGISTERED::<<${memberName}>>`, {code: true})
   member.sendMessage(`// ->TYPE .HELP TO ACCESS HELP FUNCTION.`, {code: true})
-  // member.guild.defaultChannel.sendMessage(`// ->TYPE .HELP TO ACCESS HELP FUNCTION.`, {code: true})
 })
 
 /**
@@ -116,6 +171,6 @@ cog.on('disconnect', () => {
  * SEND READY MESSAGE TO CONSOLE
  */
 cog.on('ready', () => {
-  console.log(`// ->COGITATOR # ${cog.user.id}\n`)
-  console.log('// ->AVE IMPERATOR.\n// ->ACCESSING DATA-LOOM...\n// ->LINK SECURE. AWAITING COMMANDS...\n//--=--=--=--=--=--=--=--=--=--=--=--=--=--=\n')
+  console.log(`// ->COGITATOR # ${cog.user.id}`)
+  console.log('// ->AVE IMPERATOR.\n// ->ACCESSING IMPERIAL DATA-LOOM XLVIII...\n// ->LINK SECURE. AWAITING COMMANDS...\n//--=--=--=--=--=--=--=--=--=--=--=--=--=--=\n')
 })

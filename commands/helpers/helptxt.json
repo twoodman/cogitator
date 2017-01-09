@@ -1,0 +1,12 @@
+{
+	"admin": {
+		"kill": "this kills the bot after a 5 second delay",
+		"superkill": "kills bot IMMEDIATELY. only use in dire circumstance",
+		"kick": "kicks user(s). [kick @BillyBones @SamuelArrow]",
+		"banhamma": "bans user(s). [banhamma @JimHawkins <0-7>] 0 = permaban"
+	},
+	"basic": {
+		"help": "sends this json file to whoever used command",
+		"roll": "rolls dice. [roll 1d9 <+/- 4>] <> = optional"
+	}
+}
