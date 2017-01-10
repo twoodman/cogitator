@@ -35,36 +35,6 @@ const img = (msg) => {
  * ==============================================================FIX LATER========
  */
 // const roll = (msg, die, faces, op, pro) => {
-//   let operator = op.toString()
-//   msg.channel.sendMessage(operator)
-//   msg.channel.sendMessage(typeof operator)
-  // const operatorFunctions = {
-  //   plus: (x, y) => { return x + y },
-  //   minus: (x, y) => { return x - y }
-  // }
-  // let result
-  // msg.channel.sendMessage(operator)
-  // if (operator === '+') {
-  //   let preResult = Math.floor(Math.random() * ((die * faces) - (0))) + 0
-  //   msg.channel.sendMessage(preResult)
-  //   result = operatorFunctions.plus(preResult, add)
-  //   return msg.channel.sendMessage(`${result} waaaaaaa`)
-  // }
-
-//   let operate = (operator) => {
-//     let result
-//     if (operator === '-') {
-//       result = Math.floor((Math.random() * ((die * faces) - 0) + 0)) - pro
-//     } else {
-//       result = Math.floor((Math.random() * ((die * faces) - 0) + 0)) + pro
-//     }
-//     return msg.channel.sendMessage(result)
-//   }
-//   if (operator === '-' || operator === '+') {
-//     operate(operator)
-//   } else {
-//     return msg.channel.sendMessage(`// ->INVALID OPERATOR GIVEN. ${op}`, {code: true})
-//   }
 // }
 
 // convert to roman numerals
