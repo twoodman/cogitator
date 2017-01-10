@@ -17,6 +17,7 @@
 - USER CMDS:
   - Help = sends command list to user in private message
   - Roll = rolls x amount of dice with y faces, then adds or subtracts z proficiency. (WIP)
+  - Img = image search (WIP)
 
 ---
 
