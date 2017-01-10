@@ -2,10 +2,20 @@
 <img src="http://i.imgur.com/dPWDGGl.png"></p>
 
 
+# AVE, IMPERATOR.
 
+
+// ->ACCESSING COMMANDS...
+---
 
 
 ### Features
+
+
+- NEAT:
+  - Prints flavour text to console on bot login
+  - All text sent as messages are in a code block, and are flavoured to delicious levels
+  - On client failure cogitator reminds you that creating true sentient ai is heresy
 
 
 - ADMIN CMDS:
