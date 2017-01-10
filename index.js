@@ -20,7 +20,7 @@ try {
 /** Bot command prefix */
 let prefix
 try {
-  prefix = '.'
+  prefix = '`'
 } catch (e) {
   console.log('// ->ERROR. COMMAND PREFIX NONEXISTENT.\n')
 }
@@ -111,23 +111,40 @@ cog.on('message', (msg) => {
     basic.fromroman(msg)
   }
 
-  // roll XdY
-  if (message.startsWith(`${prefix}roll`)) {
-    // get x, y (how many die, faces)
-    let die = msg.content.split(' ').slice(1).join('').split('')[0]
-    let faces = msg.content.split(' ').slice(1).join('').split('')[2]
-    let add = msg.content.split(' ').slice(3)
-    let op = msg.content.split(' ').slice(2)
-    if (add && typeof parseInt(add) !== 'number') {
-      msg.channel.sendMessage('// ->GIVEN ARGUMENTS MUST BE OF TYPE <<NUMBER>>', {code: true})
-    } else {
-      if (typeof parseInt(die) !== 'number' || typeof parseInt(faces) !== 'number') {
-        msg.channel.sendMessage('// ->GIVEN ARGUMENTS MUST BE OF TYPE <<NUMBER>>', {code: true})
-      } else {
-        basic.roll(msg, die, faces, add)
-      }
-    }
+  // google image search
+  if (message.startsWith(`${prefix}img`)) {
+    basic.img(msg)
   }
+
+  // roll XdY
+  // if (message.startsWith(`${prefix}roll`)) {
+  //   // get x, y (how many die, faces)
+  //   let die = msg.content.split(' ').slice(1).join('').split('')[0]
+  //   let faces = msg.content.split(' ').slice(1).join('').split('')[2]
+  //   let add = msg.content.split(' ').slice(3)[0]
+  //   let op = msg.content.split(' ').slice(2)[0]
+
+  //   add = parseInt(add)
+
+  //   msg.channel.sendMessage(die)
+  //   msg.channel.sendMessage(typeof die)
+  //   msg.channel.sendMessage(faces)
+  //   msg.channel.sendMessage(typeof faces)
+  //   msg.channel.sendMessage(add)
+  //   msg.channel.sendMessage(typeof add)
+  //   msg.channel.sendMessage(op)
+  //   msg.channel.sendMessage(typeof op)
+  //   return
+  //   if (add && typeof parseInt(add) !== 'number') {
+  //     msg.channel.sendMessage('// ->GIVEN ARGUMENTS MUST BE OF TYPE <<NUMBER>>', {code: true})
+  //   } else {
+  //     if (typeof parseInt(die) !== 'number' || typeof parseInt(faces) !== 'number') {
+  //       msg.channel.sendMessage('// ->GIVEN ARGUMENTS MUST BE OF TYPE <<NUMBER>>', {code: true})
+  //     } else {
+  //       basic.roll(msg, die, faces, op, add)
+  //     }
+  //   }
+  // }
 })
 
 /**
