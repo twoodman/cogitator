@@ -27,7 +27,7 @@ const img = (msg) => {
 }
 
 /**
- * ROLL FUNCTION.
+ * ROLL FUNCTION
  * msg = message obj
  * die = how many die(dice)
  * faces = how many faces said die has
