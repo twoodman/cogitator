@@ -29,8 +29,8 @@
   - Help = sends command list to user in private message
   - ToRoman = converts numbers to roman numerals
   - FromRoman = converts roman numerals to numbers (WIP)
-  - Roll = rolls x amount of dice with y faces, then adds or subtracts z proficiency. (WIP)
-  - Img = image search (WIP)
+  - Roll = rolls x amount of dice with y faces, then adds or subtracts z proficiency ⚔️
+  - Img = google image search
 
 
 ---
