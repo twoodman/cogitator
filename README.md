@@ -13,6 +13,7 @@
 
 
 - NEAT:
+  - Prefix easily changed with prefix variable
   - Prints flavour text to console on bot login
   - All text sent as messages are in a code block, and are flavoured to delicious levels
   - On client failure cogitator reminds you that creating true sentient ai is heresy
