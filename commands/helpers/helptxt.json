@@ -7,6 +7,8 @@
 	},
 	"basic": {
 		"help": "sends this json file to whoever used command",
-		"roll": "rolls dice. [roll 1d9 <+/- 4>] <> = optional"
+		"roll": "rolls dice. [roll 1d9 <+/- 4>] <> = optional",
+		"toroman": "converts # -> roman numerals. [toroman 15] = XV",
+		"img": "google img search. [img Long John Silver]"
 	}
 }
