@@ -1,5 +1,10 @@
 require('dotenv').config()
 'use strict'
+const http = require('http')
+
+http.createServer((req, res) => {
+  console.log(`// ->LISTENING ON PORT ${process.env.PORT || 5000}`)
+}).listen(process.env.PORT || 5000)
 
 /** Require Discord.js */
 let Discord
