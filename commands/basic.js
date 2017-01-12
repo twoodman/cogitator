@@ -1,5 +1,7 @@
-const fotology = require('fotology-x')
+'use strict'
+const imageSearch = require('node-google-image-search')
 
+// json helpers
 const helptxt = require('./helpers/helptxt.json')
 // const insults = require('./lists/insults.json')
 
@@ -12,16 +14,16 @@ const help = (msg) => {
 
 // image search
 const img = (msg) => {
+  // get the query, strip it of the cmd, and convert to string
   let query = msg.content.split(' ').slice(1).join(' ').toString()
-  let options = {
-    limit: 1
+  // function to return img link to channel
+  let returnImgs = (results) => {
+    return msg.channel.sendMessage(results[0]['link'])
   }
-  msg.channel.sendMessage(query)
-  fotology(query, options, (image) => {
-    for (let i in image) {
-      return msg.channel.sendMessage(image[i])
-    }
-  })
+  // random result
+  let randomNum = Math.round(Math.random() * 99)
+  // results var
+  let results = imageSearch(query, returnImgs, randomNum, 1)
 }
 
 /**
@@ -29,7 +31,7 @@ const img = (msg) => {
  * msg = message obj
  * die = how many die(dice)
  * faces = how many faces said die has
- * op = operator. subtract, add, multiply, divide. - + * /
+ * op = operator. subtract, add. - +
  * prof = proficiency. RPG term meaning how much to take
  * or subtract based on characters skills.
  *
