@@ -57,5 +57,6 @@ module.exports = {
   kill: kill,
   superkill: superkill,
   kick: kick,
-  banhamma: banhamma
+  banhamma: banhamma,
+  noauth: noauth
 }
