@@ -46,9 +46,9 @@ cog.on('message', (msg) => {
   }
 
   // if command sent by another bot, call noauth
-  if (msg.author.bot) {
-    admin.noauth(msg)
-  }
+  // if (msg.author.bot) {
+  //   admin.noauth(msg)
+  // }
 
 /**
  * COMMAND CHECKS
@@ -117,8 +117,24 @@ cog.on('message', (msg) => {
   }
 
   // roll XdY
-  // if (message.startsWith(`${prefix}roll`)) {
-  // }
+  if (message.startsWith(`${prefix}roll`)) {
+    // get # of die
+    let die = parseInt(msg.content.split(' ').slice(1)[0][0])
+    // get # of faces
+    let faces = parseInt(msg.content.split(' ').join('').split('').join('').substr(7))
+    // if a proficiency is given
+    if (msg.content.split(' ').length > 3) {
+      // get the operator used
+      let op = msg.content.split(' ').slice(2)[0]
+      // get the proficiency #
+      let pro = parseInt(msg.content.split(' ').slice(3))
+
+      // pass all that into the roll function
+      return basic.roll(msg, die, faces, op, pro)
+    }
+    // if no proficiency given just pass # of die and faces
+    return basic.roll(msg, die, faces)
+  }
 })
 
 /**
