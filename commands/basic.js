@@ -55,7 +55,7 @@ const roll = (msg, die, faces, op = null, pro = null) => {
     result -= pro
     // check for critical fail
     if (result <= 0) { // crit fail
-      critical(result)
+      return critical(result)
     }
     // return result
     return msg.channel.sendMessage(`// ->RESULT: ${result}`, {code: true})
@@ -65,21 +65,21 @@ const roll = (msg, die, faces, op = null, pro = null) => {
     result += pro
     // check for critical success
     if (result === 20) { // nat crit success
-      critical(result)
+      return critical(result)
     } else if (result > 20) { // unnat crit success
-      critical(result)
+      return critical(result)
     }
     // return result
     return msg.channel.sendMessage(`// ->RESULT: ${result}`, {code: true})
   }
   // return critical successes/fails
   if (result === 20) { // nat crit success
-    critical(result)
+    return critical(result)
   } else if (result > 20) { // unnat crit success
-    critical(result)
+    return critical(result)
   }
   if (result < 0) { // crit fail
-    critical(result)
+    return critical(result)
   }
   // if nothing crazy special happened and no other args given, just return result
   return msg.channel.sendMessage(`// ->RESULT: ${result}`, {code: true})
