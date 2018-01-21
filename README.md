@@ -5,8 +5,6 @@
 // -> ACCESSING COMMANDS...
 <br>
 
-### Features
-
 - NEAT:
   - Prefix easily changed with prefix variable
   - Prints flavour text to console on bot login
@@ -14,14 +12,14 @@
   - On client failure cogitator reminds you that creating true sentient AI is heresy
 
 
-- ADMIN CMDS:
+- ADMIN:
   - Kill = kills bot after 5 seconds, prints msg to channel
   - SuperKill = kills bot immediately
   - Kick = kicks user(s)
   - Banhamma = bans user(s)
 
 
-- USER CMDS:
+- USER:
   - Help = sends command list to user in private message
   - ToRoman = converts numbers to roman numerals
   - FromRoman = converts roman numerals to numbers (WIP)
