@@ -1,9 +1,9 @@
 <p style="text-align:center;">
 <img src="http://i.imgur.com/dPWDGGl.png"><br>[![JavaScript Style Guide](https://img.shields.io/badge/code_style-standard-brightgreen.svg)](https://standardjs.com)</p>
 
-
-## // -> ACCESSING COMMANDS...
-
+<br>
+// -> ACCESSING COMMANDS...
+<br>
 
 ### Features
 
