@@ -1,9 +1,7 @@
 <p style="text-align:center;">
 <img src="http://i.imgur.com/dPWDGGl.png"></p>
 
-<br>
-// -> ACCESSING COMMANDS...
-<br>
+## // -> ACCESSING COMMANDS...
 
 - NEAT:
   - Prefix easily changed with prefix variable
